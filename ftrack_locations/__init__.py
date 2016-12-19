@@ -11,10 +11,10 @@ def get_old_location():
     return location
 
 
-def get_new_location():
+def get_new_location(session):
 
     module = os.environ.get("FTRACK_LOCATIONS_MODULE", "")
     sys.path.append(os.path.dirname(__file__))
 
-    location = __import__(module).get_new_location()
+    location = __import__(module).get_new_location(session)
     return location
