@@ -11,9 +11,7 @@ class NewStructure(ftrack_api.structure.base.Structure):
 
         templates = ftrack_template.discover_templates()
 
-        path = ftrack_template.format(
-            {}, templates, entity=entity
-        )[0].replace("\\", "/").replace("//", "/")
+        path = ftrack_template.format({}, templates, entity=entity)[0]
 
         if entity.entity_type == "SequenceComponent":
 
@@ -55,7 +53,7 @@ class OldStructure(ftrack.Structure):
 
         path = ftrack_template.format(
             {}, templates, entity=session.get("Component", entity.getId())
-        )[0].replace("\\", "/").replace("//", "/")
+        )[0]
 
         if entity.isSequence():
 
