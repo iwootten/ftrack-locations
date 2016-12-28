@@ -30,7 +30,7 @@ class NewStructure(ftrack_api.structure.base.Structure):
                 )
             )
 
-        return path
+        return os.path.abspath(path)
 
 
 def get_new_location(session):
