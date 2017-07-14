@@ -16,17 +16,6 @@ def get_modified_component_path(path, name, padding, file_type):
     return path.replace(original_filename, replace_text)
 
 
-def get_new_location(session):
-
-    location = session.query(
-        "Location where name is \"project.disk.root\""
-    ).one()
-    location.accessor = ftrack_api.accessor.disk.DiskAccessor(prefix="")
-    location.structure = NewStructure()
-    location.priority = 50
-    return location
-
-
 class NewStructure(ftrack_api.structure.base.Structure):
 
     def get_resource_identifier(self, entity, context=None):
@@ -69,4 +58,15 @@ def get_old_location():
     location = ftrack.ensureLocation("project.disk.root")
     location.setAccessor(ftrack.DiskAccessor(prefix=""))
     location.setStructure(OldStructure())
+    return location
+
+
+def get_new_location(session):
+
+    location = session.query(
+        "Location where name is \"project.disk.root\""
+    ).one()
+    location.accessor = ftrack_api.accessor.disk.DiskAccessor(prefix="")
+    location.structure = NewStructure()
+    location.priority = 50
     return location
