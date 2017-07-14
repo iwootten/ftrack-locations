@@ -7,10 +7,7 @@ import ftrack_template
 
 def get_modified_component_path(path, name, padding, file_type):
 
-    if padding:
-        expression = "%0{0}d".format(padding)
-    else:
-        expression = "%d"
+    expression = "%0{0}d".format(padding) if padding else "%d"
 
     replace_text = "{0}/{1}.{2}{3}".format(name, name, expression, file_type)
 
