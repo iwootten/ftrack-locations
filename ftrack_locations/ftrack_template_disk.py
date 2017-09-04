@@ -9,11 +9,9 @@ def get_modified_component_path(path, name, padding, file_type):
 
     expression = "%0{0}d".format(padding) if padding else "%d"
 
+    replace_text = "{0}/{1}.{2}{3}".format(name, name, expression, file_type)
+
     original_filename = os.path.basename(path)
-
-    shot_task_version, ext = os.path.splitext(original_filename)
-
-    replace_text = "{0}/{1}.{2}{3}".format(name, shot_task_version, expression, file_type)
 
     return path.replace(original_filename, replace_text)
 
